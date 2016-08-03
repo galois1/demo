@@ -5,3 +5,4 @@ authors = ["hannelita <hannelita@gmail.com>"]
 
 [dependencies]
 hyper = "0.9.10"
+select = "0.3.0"
