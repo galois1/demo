@@ -9,7 +9,7 @@ In this workshop we'll learn to use an external HTTP client library (`hyper`)
 and an HTML DOM parser (`select`). We will take that data and process it using
 `Iterators` into a product name and price which we will print to the screen.
 
-## Step 0: Setup your local project
+## Step 000: Setup your local project
 
 Open a command line terminal. This will be your primary way of building your
 Rust code. Open a directory where you want to save your project and run.
@@ -106,7 +106,7 @@ Also need to import `Client` to use it:
 use hyper::Client;
 ```
 
-## Step 2: Reading the response body
+## Step 010: Reading the response body
 
 We'll not change the code to read the response body. You'll create a new mutable 
 `String` variable. Add the following lines to the end of your main function.
@@ -187,5 +187,5 @@ Iterating to print the contents of each row:
     }
 ```
 
-Step 4: Finding the Product Name and price
+Step 015: Finding the Product Name and price
 
