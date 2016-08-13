@@ -189,3 +189,20 @@ Iterating to print the contents of each row:
 
 Step 015: Finding the Product Name and price
 
+The actual elements containing the product name and price are somewhere in the rows
+we printed last time. Running your program in the current state will also print out 
+several rows that don't contain any products so these will also have to be filtered 
+out.
+
+First we can see that product names are all contained in `<h5>` elements. We can 
+find the names with the following snippet.
+
+```rust
+        let maybe_title_node = row.find(Name("h5")).first();
+```
+
+
+
+```rust
+        let maybe_price_node = row.find(Class("a-color-price")).first();
+```
