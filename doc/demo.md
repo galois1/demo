@@ -58,8 +58,45 @@ Hello, world!
 
 
 
+## Step 2: Reading the response body
 
+We'll not change the code to read the response body. You'll create a new mutable 
+`String` variable. Add the following lines to the end of your main function.
 
+```rust
+    let mut body = String::new();
+    response.read_to_string(&mut body).unwrap();
+    println!("{:?}", body);
+```  
+
+That's how you use Hyper to read the HTTP response body into your program and 
+print it. 
+
+```sh
+$ cargo build          
+   Compiling scraper v0.1.0 (file:///Users/foo/code/demo/step010/scraper)
+error: no method named `read_to_string` found for type `hyper::client::Response` in the current scope
+  --> src/main.rs:14:14
+   |
+14 |     response.read_to_string(&mut body).unwrap();
+   |              ^^^^^^^^^^^^^^
+   |
+   = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+   = help: candidate #1: `use std::io::Read`
+
+error: aborting due to previous error
+
+error: Could not compile `scraper`.
+
+To learn more, run the command again with --verbose.
+```
+
+Add the following line of code to the block of using statements at the top. This 
+will import the necessary implementation for reading the response as a string. 
+
+```rust
+use std::io::Read;
+```
 
 
 
