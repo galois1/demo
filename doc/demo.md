@@ -45,6 +45,7 @@ $ cargo build
 You can also execute the build as follows.
 
 ```sh
+$ cargo run
     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
      Running `target/debug/scraper`
 Hello, world!
