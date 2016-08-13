@@ -91,8 +91,11 @@ error: Could not compile `scraper`.
 To learn more, run the command again with --verbose.
 ```
 
-Add the following line of code to the block of using statements at the top. This 
-will import the necessary implementation for reading the response as a string. 
+The rust compiler tells us that it can't find the given method. It also tries to 
+suggest a fix by adding `use std::io::Read` to our code. Try that fix and see if 
+it works. Add the following line of code to the block of using statements at the 
+top. This will import the necessary implementation for reading the response as a 
+string. 
 
 ```rust
 use std::io::Read;
