@@ -51,12 +51,60 @@ $ cargo run
 Hello, world!
 ```
 
-## Step 1: Using the Hyper HTTP Client
 
+## Step 005: Using the hyper HTTP client
 
+The wishlist is an HTML page delivered over HTTP. What is HTML? What
+is HTTP?
 
+To download over HTTP we use the _hyper_ _crate_. What is a crate?
 
+Here's how to add the hyper dependency to Cargo.toml:
 
+```
+
+Add the hyper import with by writing `extern crate hyper;` in `main.rs`.
+
+To make an HTTP request we need a hyper _http client_.
+
+So this declarations go in your main function:
+
+```rust
+    let client = Client::new();
+```
+
+`let` _declares_ a client, which is set to the value created
+by `Client::new()`.
+
+`Client::new()` is a function on the `Client` _type_ that creates a
+new `Client`. Every value in Rust has a type. We can talk about types
+more later.
+
+Next we are going to make an HTTP request to Amazon's server.
+
+To do that we're going to write this series of lines:
+
+```rust
+    let mut response =
+        client.get("https://brson.github.io/demo/wishlist.html")
+        .send()
+        .unwrap();
+```
+
+There's a lot going on here.
+
+What we're looking at is a _chain_ of method calls. `client.get(...)`
+is calling `get` on the client we just created. That's what the 'dot'
+operator means - a method call. What are "methods"?
+
+`send` and `unwrap` are also method calls. The details aren't important
+right now, but feel free to read the documentation for those.
+
+Also need to import `Client` to use it:
+
+```rust
+use hyper::Client;
+```
 
 ## Step 2: Reading the response body
 
