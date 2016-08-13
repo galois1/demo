@@ -13,7 +13,7 @@ use select::node::Node;
 fn main() {
     let client = Client::new();
     let mut response =
-        client.get("https://raw.githubusercontent.com/brson/demo/master/wishlist.html")
+        client.get("https://brson.github.io/demo/wishlist.html")
               .header(Connection::close())
               .send()
               .unwrap();

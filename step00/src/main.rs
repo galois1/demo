@@ -12,7 +12,7 @@ use hyper::client::{Client, Request, Response};
 fn main() {
         let client = Client::new();
 
-        let res = client.get("https://raw.githubusercontent.com/brson/demo/master/wishlist.html").send().unwrap();
+        let res = client.get("https://brson.github.io/demo/wishlist.html").send().unwrap();
 
         println!("Response: {}", res.body);
     }
