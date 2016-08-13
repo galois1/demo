@@ -70,7 +70,6 @@ Hello, world!
 
 
 
-
 ### Executing the program
 
 Now that we are inside our project, we can compile and run the program.
