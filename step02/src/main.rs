@@ -6,7 +6,7 @@ use hyper::header::Connection;
 use std::io::Read;
 extern crate select;
 use select::document::Document;
-use select::predicate::{Class, Name};
+use select::predicate::{Class,Attr, Name};
 use select::node::Node;
 
 
@@ -20,9 +20,9 @@ fn main() {
     let mut body = String::new();
     response.read_to_string(&mut body).unwrap();
     let titles: Vec<String> = Document::from(body.as_str())
-        .find(Name("item"))
+        .find(Attr("title",()))
         .iter()
-        .map(|node| node.find(Name("a")).first().unwrap().text())
+        .map(|node| node.attr("title").unwrap().to_string())
         .collect();
     println!("{:?}", titles);
 
