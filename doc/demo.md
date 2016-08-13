@@ -101,53 +101,7 @@ string.
 use std::io::Read;
 ```
 
+Now you can build and run your program successfully. It will download the page and 
+print it to the screen. 
 
-
-
-
-
-
-
-
-
-### Executing the program
-
-Now that we are inside our project, we can compile and run the program.
-
-```sh
-cargo run
-   Compiling listr v0.1.0 (file:///home/example/listr)
-     Running `target/debug/listr`
-Hello, world!
-```
-
-## Retrieving the web page
-
-That was useful, but we need more!
-Let's use a library to help us retrieve the webpage content
-
-# Retrieving the web page
-
-We are going to use the [Hyper](https://github.com/hyperium/hyper) library.
-Hyper is a fast, modern HTTP implementation written in and for Rust.
-
-> Note: Introduce Crates and https://crates.io
-
-
-## Including a dependency on our project
-
-On the `Cargo.toml` file, we are adding a line to our dependency
-The means we are taking any version of the library
-
-```
-[package]
-name = "listr"
-version = "0.1.0"
-authors = ["Ferris The Crab <ferris@example.com"]
-
-[dependencies]
-hyper = "*"
-```
-=======
-The `Cargo.toml` file hold the metadata necessary to build your project. 
->>>>>>> Stashed changes
+## Step 3: 

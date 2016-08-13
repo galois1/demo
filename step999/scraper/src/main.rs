@@ -15,21 +15,20 @@ fn main() {
                              .unwrap();
     let mut body = String::new();
     response.read_to_string(&mut body).unwrap();
-    let items: Vec<(String, String)> =
-        Document::from(body.as_str())
+    Document::from(body.as_str())
                   .find(Class("a-row"))
                   .iter()
-                  .flat_map(|node| {
-                     let title = node.find(Name("h5")).first();
-                     let price = node.find(Class("a-color-price")).first();
-                     match (title, price) {
-                         (Some(title), Some(price)) => Some((title.text().trim().into(), price.text().trim().into())),
-                         _ => None
+                  .map(|node| {
+                     let titleQuery = node.find(Name("h5")).first();
+                     let priceQuery = node.find(Class("a-color-price")).first();
+                     match (titleQuery, priceQuery) {
+                         (Some(titleNode), Some(priceNode)) => {
+                             let title :String = titleNode.text().trim().into();
+                             let price :String = priceNode.text().trim().into();
+                             println!(" * Book \"{}\", with price {}", title, price);
+                         },
+                         _ => ()
                      }
                   })
-                  .collect();
-
-    for (title, price) in items {
-        println!(" * Book \"{}\", with price {}", title, price);
-    }
+                  .collect::<Vec<_>>();
 }
