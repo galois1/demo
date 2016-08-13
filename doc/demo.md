@@ -1,10 +1,3 @@
-Fix OpenSSL problem on MacOS
-
-```
-$ brew install openssl
-$ C_INCLUDE_PATH=$(brew --prefix openssl)/include cargo build
-```
-
 # Rust HTML Parsing Workshop
 
 Suppose you have an Amazon.com wishlist of products and you want to find and
@@ -16,37 +9,66 @@ In this workshop we'll learn to use an external HTTP client library (`hyper`)
 and an HTML DOM parser (`select`). We will take that data and process it using
 `Iterators` into a product name and price which we will print to the screen.
 
-## Step 1: Setup your local project
+## Step 0: Setup your local project
 
 Open a command line terminal. This will be your primary way of building your
 Rust code. Open a directory where you want to save your project and run.
 
 ```sh
 cargo new --bin scraper
+cd scraper
 ```
 
-This command uses cargo, is the Rust Package Manager, to create a new project
+This command uses `cargo`, is the Rust Package Manager, to create a new project
 structure that will build and run out of the box. Cargo simplifies the build and 
-run steps of projects.
-
-```sh
-cd listr
-cargo build
-```
-
-### Overview of the project
+run steps of projects. The basic initial structure of a new cargo project has 3 
+files.
 
 ```
 scraper
+├── Cargo.lock
 ├── Cargo.toml
 └── src
     └── main.rs
 
-1 directory, 2 files
+1 directory, 3 files
 ```
 
-> Note: Explain Cargo.toml is where we include some information about our
-> project and `src/main.rs` is where the application will live.
+To build your project run the following. 
+
+```sh
+$ cargo build
+   Compiling scraper v0.1.0 (file:///Users/foo/code/demo/scraper)
+    Finished debug [unoptimized + debuginfo] target(s) in 0.98 secs
+```
+
+You can also execute the build as follows.
+
+```sh
+    Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+     Running `target/debug/scraper`
+Hello, world!
+```
+
+## Step 1: Using the Hyper HTTP Client
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Executing the program
 
@@ -86,3 +108,6 @@ authors = ["Ferris The Crab <ferris@example.com"]
 [dependencies]
 hyper = "*"
 ```
+=======
+The `Cargo.toml` file hold the metadata necessary to build your project. 
+>>>>>>> Stashed changes
