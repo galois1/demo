@@ -1,7 +1,7 @@
 [package]
-name = "step999"
+name = "scraper"
 version = "0.1.0"
-authors = ["dongxu <huang@pingcap.com>"]
+authors = ["Aaron Tull <atull@netflix.com>"]
 
 [dependencies]
 hyper = "0.9.10"
