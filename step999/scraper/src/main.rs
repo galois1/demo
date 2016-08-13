@@ -15,20 +15,16 @@ fn main() {
                              .unwrap();
     let mut body = String::new();
     response.read_to_string(&mut body).unwrap();
-    Document::from(body.as_str())
-                  .find(Class("a-row"))
-                  .iter()
-                  .map(|node| {
-                     let titleQuery = node.find(Name("h5")).first();
-                     let priceQuery = node.find(Class("a-color-price")).first();
-                     match (titleQuery, priceQuery) {
-                         (Some(titleNode), Some(priceNode)) => {
-                             let title :String = titleNode.text().trim().into();
-                             let price :String = priceNode.text().trim().into();
-                             println!(" * Book \"{}\", with price {}", title, price);
-                         },
-                         _ => ()
-                     }
-                  })
-                  .collect::<Vec<_>>();
+
+    let document = Document::from(body.as_str());
+    let rows = document.find(Class("a-row"));
+    for row in rows.iter() {
+        let maybe_title_node = row.find(Name("h5")).first();
+        let maybe_price_node = row.find(Class("a-color-price")).first();
+        if let (Some(title_node), Some(price_node)) = (maybe_title_node, maybe_price_node) {
+            let title = title_node.text().trim().to_string();
+            let price = price_node.text().trim().to_string();
+            println!(" * Book \"{}\", with price {}", title, price);
+        }
+    }
 }
