@@ -1,0 +1,12 @@
+[package]
+name = "amazon_wish"
+version = "0.1.0"
+authors = ["hannelita <hannelita@gmail.com>"]
+
+
+[dependencies]
+select = "0.3.0"
+
+[dependencies.hyper]
+version = "0.9.10"
+default-features = false
