@@ -2,11 +2,9 @@ extern crate hyper;
 extern crate select;
 
 use hyper::Client;
-use hyper::header::Connection;
 
 use select::document::Document;
-use select::predicate::{Class, Attr, Name};
-use select::node::Node;
+use select::predicate::{Class, Name};
 
 use std::io::Read;
 
