@@ -1,14 +1,14 @@
 extern crate hyper;
-
+extern crate select;
 
 use hyper::Client;
 use hyper::header::Connection;
-use std::io::Read;
-extern crate select;
+
 use select::document::Document;
 use select::predicate::{Class, Attr, Name};
 use select::node::Node;
 
+use std::io::Read;
 
 fn main() {
     let client = Client::new();
@@ -21,12 +21,14 @@ fn main() {
     let items: Vec<(String, String)> = Document::from(body.as_str())
                    .find(Class("a-row"))
                    .iter()
-                   .map(|node| {
-                      let title = node.find(Name("h5")).first().unwrap().text();
-                      let price = node.find(Class("a-color-price")).first().unwrap().text();
-                      (title, price)
+                   .flat_map(|node| {
+                      let title = node.find(Name("h5")).first();
+                      let price = node.find(Class("a-color-price")).first();
+                      match (title, price) {
+                          (Some(title), Some(price)) => Some((title.text().trim().into(), price.text().trim().into())),
+                          _ => None
+                      }
                    })
                    .collect();
     println!("{:?}", items);
 }
-
