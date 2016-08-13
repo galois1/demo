@@ -152,4 +152,40 @@ use std::io::Read;
 Now you can build and run your program successfully. It will download the page and 
 print it to the screen. 
 
-## Step 3: 
+## Step 3: Parsing the HTML
+
+We'll be using the `select` library to find the data we care about on the 
+wishlist. Add the following dependency to your `[dependencies]` section of your 
+`Cargo.toml` file. 
+
+```
+select = "0.3.0"
+```
+
+Then you can use the `Document` parser in your rust function. Add the following 2 
+statements to your `main.rs`. 
+
+```rust
+use select::document::Document;
+use select::predicate::{Class};
+```
+
+The `select` library is used to find HTML objects by _class_, _id_, or _name_. We 
+can see that the products are all contained in an HTML div with a class `a-row`. 
+We can get a list of all `a-row` HTML elements using the following code snippet.  
+
+```
+    let document = Document::from(body.as_str());
+    let rows = document.find(Class("a-row"));
+```
+
+Iterating to print the contents of each row:
+
+```
+    for row in rows.iter() {
+        println!(" * Row {}", row.text());
+    }
+```
+
+Step 4: Finding the Product Name and price
+

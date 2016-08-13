@@ -4,7 +4,7 @@ extern crate select;
 use hyper::Client;
 
 use select::document::Document;
-use select::predicate::{Class, Name};
+use select::predicate::{Class};
 
 use std::io::Read;
 
@@ -15,11 +15,9 @@ fn main() {
                              .unwrap();
     let mut body = String::new();
     response.read_to_string(&mut body).unwrap();
-    Document::from(body.as_str())
-                  .find(Class("a-row"))
-                  .iter()
-                  .map(|node| {
-                    println!(" * Row {}", node.text());
-                  })
-                  .collect::<Vec<_>>();
+    let document = Document::from(body.as_str());
+    let rows = document.find(Class("a-row"));
+    for row in rows.iter() {
+        println!(" * Row {}", row.text());
+    }
 }
